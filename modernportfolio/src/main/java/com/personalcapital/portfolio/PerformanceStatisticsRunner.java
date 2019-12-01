@@ -12,6 +12,7 @@ import static com.personalcapital.portfolio.constants.Constants.WORST_CASE_PERCE
 public class PerformanceStatisticsRunner {
 
     private Median median ;
+
     private static final NumberFormat currencyFormat=NumberFormat.getCurrencyInstance(Locale.US);
 
     public PerformanceStatisticsRunner()
