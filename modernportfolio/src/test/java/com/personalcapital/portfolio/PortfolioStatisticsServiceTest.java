@@ -14,7 +14,9 @@ import static org.mockito.Mockito.*;
 
 public class PortfolioStatisticsServiceTest {
 
-
+    /**
+     * Test Portfolio Statistics Service when MonteCarlo Object is null
+     */
     @Test
     public void testPortfolioStatisticsService_WhenMontecarloObjectIsNull()
     {
@@ -42,6 +44,10 @@ public class PortfolioStatisticsServiceTest {
         }
 
     }
+
+    /**
+     * Test Portfolio Statistics Service when PortFolioType object is null
+     */
     @Test
     public void testPortfolioStatisticsService_WhenPortFolioTypeIsNull()
     {
@@ -57,6 +63,9 @@ public class PortfolioStatisticsServiceTest {
 
     }
 
+    /**
+     * Test Portfolio Statistics Service when Performance Statistics runner Object is null
+     */
     @Test
     public void testPortfolioStatisticsService_WhenPerformanceStatisticsRunnerIsNull()
     {
@@ -79,7 +88,9 @@ public class PortfolioStatisticsServiceTest {
 
     }
 
-
+    /**
+     * Test Portfolio Service When Initial Investment is not Greater than zero
+     */
     @Test
     public void testPortFolioService_WhenIntialInvestmentIsNotGreaterThanZero()
     {
@@ -104,6 +115,9 @@ public class PortfolioStatisticsServiceTest {
         }
     }
 
+    /**
+     * Test Portfolio Statistics Service when num of years is less then zero
+     */
     @Test
     public void testPortfolioStatisticsService_WhenNumOfYearsIsLessThenZero()
     {
@@ -130,6 +144,10 @@ public class PortfolioStatisticsServiceTest {
 
     }
 
+    /**
+     * Test Portfolio Statistics Service when Empty Simulated Values are returned by runMonteCarloSimulation
+     *  method .
+     */
     @Test
     public void testPortfolioStatisticsService_WhenEmptySimulatedValuesArePassed()
     {
@@ -162,6 +180,10 @@ public class PortfolioStatisticsServiceTest {
         }
 
     }
+
+    /**
+     * Test Portfolio Statistics Service when Null value is returned by runMonteCarloSimulation method
+     */
     @Test
     public void testPortfolioStatisticsService_WhenNullSimulatedValuesArePassed()
     {
@@ -195,6 +217,9 @@ public class PortfolioStatisticsServiceTest {
 
     }
 
+    /**
+     * Testing the happy path for Portfolio Statistics Service.
+     */
     @Test
     public void testPortfolioStatisticsService()
     {

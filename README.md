@@ -5,8 +5,9 @@ Portfolio Inflation Adjusted Values from Simulation
 1) Number of simulations: 10000
 2) Inflation adjusted at the rate of 3.5% every year
 3) Initial Investment = $100000
-4) projected portfolio future value over 20 years.
 
+Used MonteCarlo Simulation to predict outcomes over future time period, projecting the portfolio future value over 20 years by using past risk (SD) and return (Mean) given for a 
+uniformly distributed random 
 
 
 Results of Simulation 
