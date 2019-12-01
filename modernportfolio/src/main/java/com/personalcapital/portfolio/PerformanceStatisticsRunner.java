@@ -12,12 +12,11 @@ import static com.personalcapital.portfolio.constants.Constants.WORST_CASE_PERCE
 public class PerformanceStatisticsRunner {
 
     private Median median ;
-    private NumberFormat currencyFormat;
+    private static final NumberFormat currencyFormat=NumberFormat.getCurrencyInstance(Locale.US);
 
     public PerformanceStatisticsRunner()
     {
         median = new Median();
-        currencyFormat = NumberFormat.getCurrencyInstance(Locale.US);
     }
 
     /**
@@ -27,9 +26,13 @@ public class PerformanceStatisticsRunner {
      */
     public PortfolioPerformanceStatsResult runStatistics(double[]simulatedValues)throws IllegalArgumentException
     {
+        if(simulatedValues==null)
+        {
+            throw new IllegalArgumentException("The simulated Values array can't be null");
+        }
         if(simulatedValues.length==0)
         {
-            throw new IllegalArgumentException("The length of simulated values is zero");
+            throw new IllegalArgumentException("The length of simulated values can't be  zero");
         }
         double resultMedian = median.evaluate(simulatedValues);
         double resultBest = StatUtils.percentile(simulatedValues,BEST_CASE_PERCENTILE);

@@ -47,6 +47,7 @@ public class MonteCarloSimulator {
         return rateOfReturn;
     }
 
+
     /**
      * Function, to  run Monte Carlo simulations for projecting given future year investment value adjusted
      * according to inflation rate.
@@ -61,7 +62,7 @@ public class MonteCarloSimulator {
      * @return
      */
     public double[] runMonteCarloSimulation( double stdDev, double mean, double initalInvestment,
-                                         double inflationRate, int numOfyears)throws NotStrictlyPositiveException,OutOfRangeException
+                                         double inflationRate, int numOfyears)throws NotStrictlyPositiveException,OutOfRangeException,IllegalArgumentException
     {
         if(numOfyears<=0)
         {
@@ -76,8 +77,9 @@ public class MonteCarloSimulator {
            double currentInvestment = initalInvestment;
            for (int j = 0; j < numOfyears; j++) {
             double predictedRateOfReturn = generateRateOfReturnForRandProbability(stdDev,mean,Math.random());
-            currentInvestment = currentInvestment * (1 +predictedRateOfReturn) ;
-            currentInvestment = currentInvestment-currentInvestment* inflationRate;
+            currentInvestment = currentInvestment * (1 +(predictedRateOfReturn)) ;
+            //adjusting according to the inflation rate
+            currentInvestment = currentInvestment-currentInvestment*inflationRate;
            }
            investmentSimulationArray[i] = currentInvestment;
        }

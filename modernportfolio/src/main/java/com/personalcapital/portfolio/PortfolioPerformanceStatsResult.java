@@ -18,6 +18,18 @@ public class PortfolioPerformanceStatsResult {
         this.worstCase = worstCase;
     }
 
+    public String getMedian() {
+        return median;
+    }
+
+    public String getBestCase() {
+        return bestCase;
+    }
+
+    public String getWorstCase() {
+        return worstCase;
+    }
+
     @Override
     public String toString()
     {
