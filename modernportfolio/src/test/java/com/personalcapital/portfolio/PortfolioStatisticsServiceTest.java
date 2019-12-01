@@ -22,7 +22,6 @@ public class PortfolioStatisticsServiceTest {
         try
         {
             portfolioStatisticsService.runPortFolioService(PortfolioType.AGGRESSIVE,null,new PerformanceStatisticsRunner(),100000,20,0.035);
-
             fail("The Monte Carlo Simulator  object can't be null exception message is not thrown");
         }
         catch (IllegalArgumentException e)
@@ -65,7 +64,6 @@ public class PortfolioStatisticsServiceTest {
         String expMessage = "The Performance Stats runner object can't be null";
         try{
             portfolioStatisticsService.runPortFolioService(PortfolioType.AGGRESSIVE,new MonteCarloSimulator(10),null,100000,20,0.035);
-
             fail(expMessage+" is not thrown");
         }catch (IllegalArgumentException e)
         {
@@ -73,7 +71,6 @@ public class PortfolioStatisticsServiceTest {
         }
         try{
             portfolioStatisticsService.runPortFolioService(PortfolioType.VERYCONSERVATIVE,new MonteCarloSimulator(10),null,100000,20,0.035);
-
             fail(expMessage+" is not thrown");
         }catch (IllegalArgumentException e)
         {
@@ -86,18 +83,20 @@ public class PortfolioStatisticsServiceTest {
     @Test
     public void testPortFolioService_WhenIntialInvestmentIsNotGreaterThanZero()
     {
-        String expMessage = "Initial Investment should be greater then zero";
+        double initialInvestment = 0;
+        String expMessage = "Initial Investment should be greater then zero. The given value is, "+initialInvestment;
         PortfolioStatisticsService portfolioStatisticsService = new PortfolioStatisticsService();
         try{
-            portfolioStatisticsService.runPortFolioService(PortfolioType.AGGRESSIVE,new MonteCarloSimulator(10),new PerformanceStatisticsRunner(),0,20,0.035);
-
+            portfolioStatisticsService.runPortFolioService(PortfolioType.AGGRESSIVE,new MonteCarloSimulator(10),new PerformanceStatisticsRunner(),initialInvestment,20,0.035);
             fail(expMessage+" is not thrown");
         }catch (IllegalArgumentException e)
         {
             assertEquals(expMessage,e.getMessage());
         }
         try{
-            portfolioStatisticsService.runPortFolioService(PortfolioType.VERYCONSERVATIVE,new MonteCarloSimulator(10),new PerformanceStatisticsRunner(),-90,20,0.035);
+            initialInvestment = -90;
+            expMessage = "Initial Investment should be greater then zero. The given value is, "+initialInvestment;
+            portfolioStatisticsService.runPortFolioService(PortfolioType.VERYCONSERVATIVE,new MonteCarloSimulator(10),new PerformanceStatisticsRunner(),initialInvestment,20,0.035);
             fail(expMessage+" is not thrown");
         }catch (IllegalArgumentException e)
         {
@@ -109,9 +108,10 @@ public class PortfolioStatisticsServiceTest {
     public void testPortfolioStatisticsService_WhenNumOfYearsIsLessThenZero()
     {
         PortfolioStatisticsService portfolioStatisticsService = new PortfolioStatisticsService();
-        String expMessage = "Num of years should be greater than zero";
+        int numOfyears= 0;
+        String expMessage = "Num of years should be greater than zero. The given value is, "+numOfyears;
         try{
-            portfolioStatisticsService.runPortFolioService(PortfolioType.AGGRESSIVE,new MonteCarloSimulator(10),new PerformanceStatisticsRunner(),100000,0,0.035);
+            portfolioStatisticsService.runPortFolioService(PortfolioType.AGGRESSIVE,new MonteCarloSimulator(10),new PerformanceStatisticsRunner(),100000,numOfyears,0.035);
 
             fail(expMessage+" is not thrown");
         }catch (IllegalArgumentException e)
@@ -119,7 +119,9 @@ public class PortfolioStatisticsServiceTest {
             assertEquals(expMessage,e.getMessage());
         }
         try{
-            portfolioStatisticsService.runPortFolioService(PortfolioType.VERYCONSERVATIVE,new MonteCarloSimulator(10),new PerformanceStatisticsRunner(),100000,-9,0.035);
+            numOfyears = -9;
+            expMessage = "Num of years should be greater than zero. The given value is, "+numOfyears;
+            portfolioStatisticsService.runPortFolioService(PortfolioType.VERYCONSERVATIVE,new MonteCarloSimulator(10),new PerformanceStatisticsRunner(),100000,numOfyears,0.035);
             fail(expMessage+" is not thrown");
         }catch (IllegalArgumentException e)
         {
@@ -142,8 +144,7 @@ public class PortfolioStatisticsServiceTest {
 
         try {
              portfolioStatisticsService.runPortFolioService(PortfolioType.AGGRESSIVE, mockMonteCarloSimulator, new PerformanceStatisticsRunner(),100000,20,0.035);
-
-            fail("The length of simulated values can't be  zero, Exception message is not thrown");
+             fail("The length of simulated values can't be  zero, Exception message is not thrown");
 
         }catch (IllegalArgumentException e)
         {
@@ -152,7 +153,6 @@ public class PortfolioStatisticsServiceTest {
         }
         try {
             portfolioStatisticsService.runPortFolioService(PortfolioType.VERYCONSERVATIVE, mockMonteCarloSimulator, new PerformanceStatisticsRunner(),100000,20,0.035);
-
             fail("The length of simulated values can't be  zero, Exception message is not thrown");
 
         }catch (IllegalArgumentException e)
@@ -176,7 +176,6 @@ public class PortfolioStatisticsServiceTest {
 
         try {
             portfolioStatisticsService.runPortFolioService(PortfolioType.AGGRESSIVE, mockMonteCarloSimulator, new PerformanceStatisticsRunner(),100000,20,0.035);
-
             fail("The simulated Values array can't be null, Exception message is not thrown");
 
         }catch (IllegalArgumentException e)
@@ -186,7 +185,6 @@ public class PortfolioStatisticsServiceTest {
         }
         try {
             portfolioStatisticsService.runPortFolioService(PortfolioType.VERYCONSERVATIVE, mockMonteCarloSimulator, new PerformanceStatisticsRunner(),100000,20,0.035);
-
             fail("The simulated Values array can't be null, Exception message is not thrown");
 
         }catch (IllegalArgumentException e)

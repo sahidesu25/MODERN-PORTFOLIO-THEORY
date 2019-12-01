@@ -9,10 +9,12 @@ import java.util.Locale;
 import static com.personalcapital.portfolio.constants.Constants.BEST_CASE_PERCENTILE;
 import static com.personalcapital.portfolio.constants.Constants.WORST_CASE_PERCENTILE;
 
-public class PerformanceStatisticsRunner {
-
+/**
+ * Performs all the required Statistics on the Simulated Values
+ */
+public class PerformanceStatisticsRunner
+{
     private Median median ;
-
     private static final NumberFormat currencyFormat=NumberFormat.getCurrencyInstance(Locale.US);
 
     public PerformanceStatisticsRunner()
@@ -22,10 +24,13 @@ public class PerformanceStatisticsRunner {
 
     /**
      * Function which runs all the necessary statistics like Median, Percentiles on the simulated values
-     * @param simulatedValues, the simulated investment values after performing MonteCarlo Simulation
-     * @return
+     * @param simulatedValues, the simulated investment values after performing MonteCarlo Simulation.
+     * @return PortfolioPerformanceStatsResult, the end result of the simulation after performing median,
+     *                                         best case percentile and worst case percentile.
+     * @throws IllegalArgumentException, when simulatedValues.length=0 or simulatedValues=null
      */
-    public PortfolioPerformanceStatsResult runStatistics(double[]simulatedValues)throws IllegalArgumentException
+    public PortfolioPerformanceStatsResult runStatistics(double[]simulatedValues)
+            throws IllegalArgumentException
     {
         if(simulatedValues==null)
         {

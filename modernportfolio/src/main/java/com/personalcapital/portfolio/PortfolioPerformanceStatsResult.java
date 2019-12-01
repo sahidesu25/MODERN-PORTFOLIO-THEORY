@@ -4,9 +4,9 @@ package com.personalcapital.portfolio;
  * Class, which stores the final result of the Portfolio
  * Median 20th Year, 10 % Best Case,10 % Worst Case
  */
-public class PortfolioPerformanceStatsResult {
-
-    private  String median;
+public class PortfolioPerformanceStatsResult
+{
+    private String median;
     private String bestCase;
     private String worstCase;
 
@@ -18,15 +18,18 @@ public class PortfolioPerformanceStatsResult {
         this.worstCase = worstCase;
     }
 
-    public String getMedian() {
+    public String getMedian()
+    {
         return median;
     }
 
-    public String getBestCase() {
+    public String getBestCase()
+    {
         return bestCase;
     }
 
-    public String getWorstCase() {
+    public String getWorstCase()
+    {
         return worstCase;
     }
 

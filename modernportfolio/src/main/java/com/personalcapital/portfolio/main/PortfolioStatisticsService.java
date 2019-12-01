@@ -19,11 +19,20 @@ public class PortfolioStatisticsService {
      * @param portfolioType, Aggressive or VeryConservative
      * @param monteCarloSimulator , MonteCarlo Simulator Object
      * @param runner, Statistics runner object to run all the necessary statistics
+     * @param intialInvestment, The initial investment made
+     * @param numOfYears, The number of years for which the future investment value should be projected
      * @return PortfolioPerformanceStatsResult, the result of Median 20th Year, 10% Best Case, 10% Worst Case
      *                                          for a given portfolio type
-     */
-       public PortfolioPerformanceStatsResult runPortFolioService(PortfolioType portfolioType, MonteCarloSimulator monteCarloSimulator, PerformanceStatisticsRunner runner,double intialInvestment,int numOfYears, double inflationRate) {
-
+     * @throws IllegalArgumentException, when portfolioType, monteCarloSimulator, runner is null
+       */
+       public PortfolioPerformanceStatsResult runPortFolioService(PortfolioType portfolioType,
+                                                                  MonteCarloSimulator monteCarloSimulator,
+                                                                  PerformanceStatisticsRunner runner,
+                                                                  double intialInvestment,
+                                                                  int numOfYears,
+                                                                  double inflationRate)
+                                                                  throws IllegalArgumentException
+       {
            if(portfolioType==null)
            {
                throw  new IllegalArgumentException("The Portfolio type can't be null");
@@ -42,12 +51,12 @@ public class PortfolioStatisticsService {
            return res;
 
        }
-
-    /**
-     * Main Entry for the Portfolio Service
+       /***
+     * Main entry of the Program
      * @param args
      */
-    public static void main(String[] args){
+        public static void main(String[] args)
+        {
            PortfolioStatisticsService portfolioStatisticsService = new PortfolioStatisticsService();
            try {
                System.out.println("++++++++++++++++++++++Very Conservative PortFolio++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
@@ -57,37 +66,23 @@ public class PortfolioStatisticsService {
                                        new PerformanceStatisticsRunner(),INITIAL_INVESTMENT,NUM_OF_YEARS,INFLATION_RATE);
                System.out.println(veryConservativeRes.toString());
                System.out.println();
-
-           }
-           catch (IllegalArgumentException e)
-           {
-               System.out.println("There was  Exception thrown while Calculating Very Conservative Portfolio Statistics values from simulation: "+e);
-
-           }
-           catch (RuntimeException e )
-           {
-              System.out.println("There was  Exception thrown while Calculating Very Conservative Portfolio Statistics values from simulation: "+e);
-           }
-           try
-           {
                System.out.println("++++++++++++++++++++++Aggressive Portfolio++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
                PortfolioPerformanceStatsResult aggresiveResult = portfolioStatisticsService.runPortFolioService
-                               (PortfolioType.AGGRESSIVE,
-                                       new MonteCarloSimulator(NUM_OF_SIMULATIONS),
-                                       new PerformanceStatisticsRunner(),INITIAL_INVESTMENT,NUM_OF_YEARS,INFLATION_RATE);
+                       (PortfolioType.AGGRESSIVE,
+                               new MonteCarloSimulator(NUM_OF_SIMULATIONS),
+                               new PerformanceStatisticsRunner(),INITIAL_INVESTMENT,NUM_OF_YEARS,INFLATION_RATE);
                System.out.println(aggresiveResult.toString());
                System.out.println();
 
            }
            catch (IllegalArgumentException e)
            {
-              System.out.println("There was some Exception thrown while Calculating Aggressive Portfolio Statistics values from simulation: "+e);
+               System.out.println("There was  Exception thrown while Calculating Portfolio Statistics values from simulation: "+e);
 
            }
-           catch (RuntimeException e)
+           catch (RuntimeException e )
            {
-              System.out.println("There was some Exception thrown while Calculating Aggressive Portfolio Statistics values from simulation: "+e);
+              System.out.println("There was  Exception thrown while Calculating  Portfolio Statistics values from simulation: "+e);
            }
-       
        }
 }
