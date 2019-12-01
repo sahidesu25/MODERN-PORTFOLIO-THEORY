@@ -76,7 +76,8 @@ public class MonteCarloSimulator {
            double currentInvestment = initalInvestment;
            for (int j = 0; j < numOfyears; j++) {
             double predictedRateOfReturn = generateRateOfReturnForRandProbability(stdDev,mean,Math.random());
-            currentInvestment = currentInvestment * (1 +(predictedRateOfReturn-inflationRate)) ;
+            currentInvestment = currentInvestment * (1 +(predictedRateOfReturn)) ;
+            currentInvestment = currentInvestment-currentInvestment* inflationRate;
            }
            investmentSimulationArray[i] = currentInvestment;
        }
